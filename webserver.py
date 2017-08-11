@@ -83,6 +83,10 @@ class webServerHandler(BaseHTTPRequestHandler):
                         myRestaurantQuery.name = messagecontent[0]
                         session.add(myRestaurantQuery)
                         session.commit()
+                        self.send_response(301)
+                        self.send_header('Content-type', 'text/html')
+                        self.send_header('Location', '/restaurants')
+                        self.end_headers()
                 
             if self.path.endswith('/restaurants/new'):
                 ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
