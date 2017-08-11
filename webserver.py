@@ -79,6 +79,10 @@ class webServerHandler(BaseHTTPRequestHandler):
                     restaurantIDPath = self.path.split("/")[2]
 
                     myRestaurantQuery = session.query(Restaurant).filter_by(id=restaurantIDPath).one()
+                    if myRestaurantQuery != []:
+                        myRestaurantQuery.name = messagecontent[0]
+                        session.add(myRestaurantQuery)
+                        session.commit()
                 
             if self.path.endswith('/restaurants/new'):
                 ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
