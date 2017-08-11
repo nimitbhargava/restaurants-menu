@@ -46,6 +46,9 @@ class webServerHandler(BaseHTTPRequestHandler):
                     output += "<input type = 'submit' value = 'Rename'>"
                     output += "</form>"
                     output += "</body></html>"
+
+                    self.wfile.write(output)
+
             
             if self.path.endswith("/restaurants"):
                 restaurants = session.query(Restaurant).all()
