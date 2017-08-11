@@ -91,6 +91,7 @@ class webServerHandler(BaseHTTPRequestHandler):
         try:
             if self.path.endswith("/delete"):
                 restaurantIDPath = self.path.split("/")[2]
+                myRestaurantQuery = session.query(Restaurant).filter_by(id=restaurantIDPath).one()
 
             if self.path.endswith('/edit'):
                 ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
