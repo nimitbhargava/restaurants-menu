@@ -40,7 +40,7 @@ class webServerHandler(BaseHTTPRequestHandler):
                 output += "<a href='restaurants/new'>Make a New Restaurant</a><br><br>"
                 for restaurant in restaurants:
                     output += restaurant.name
-                    output += "<br><a href='#'>Edit</a>"
+                    output += "<br><a href='/restaurants/%s/edit'>Edit</a>" % restaurant.id
                     output += "<br><a href='#'>Delete</a>"
                     output += "</br></br>"
 
@@ -67,7 +67,7 @@ class webServerHandler(BaseHTTPRequestHandler):
                     self.send_header('Content-type', 'text/html')
                     self.send_header('Location', '/restaurants')
                     self.end_headers()
-                    
+
         except:
             pass
 
