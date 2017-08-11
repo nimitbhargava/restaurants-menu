@@ -62,7 +62,12 @@ class webServerHandler(BaseHTTPRequestHandler):
                     newRestaurant = Restaurant(name=messagecontent[0])
                     session.add(newRestaurant)
                     session.commit()
-                
+
+                    self.send_response(301)
+                    self.send_header('Content-type', 'text/html')
+                    self.send_header('Location', '/restaurants')
+                    self.end_headers()
+                    
         except:
             pass
 
