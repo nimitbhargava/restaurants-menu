@@ -32,6 +32,7 @@ class webServerHandler(BaseHTTPRequestHandler):
 
             if self.path.endswith("/edit"):
                 restaurantIDPath = self.path.split("/")[2]
+                myRestaurantQuery = session.query(Restaurant).filter_by(id=restaurantIDPath).one()
             
             if self.path.endswith("/restaurants"):
                 restaurants = session.query(Restaurant).all()
