@@ -57,6 +57,11 @@ class webServerHandler(BaseHTTPRequestHandler):
                 if ctype == 'multipart/form-data':
                     fields = cgi.parse_multipart(self.rfile, pdict)
                     messagecontent = fields.get('newRestaurantName')
+
+                    # Create new Restaurant Object
+                    newRestaurant = Restaurant(name=messagecontent[0])
+                    session.add(newRestaurant)
+                    session.commit()
                 
         except:
             pass
