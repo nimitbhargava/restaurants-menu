@@ -20,6 +20,13 @@ class webServerHandler(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header('Content-type', 'text/html')
                 self.end_headers()
+                output = ""
+                output += "<html><body>"
+                for restaurant in restaurants:
+                    output += restaurant.name
+                    output += "</br></br></br>"
+
+                output += "</body></html>"
         except IOError:
             self.send_error(404, 'File Not Found: %s' % self.path)
 
