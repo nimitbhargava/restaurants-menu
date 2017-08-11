@@ -22,6 +22,7 @@ class webServerHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 output = ""
                 output += "<html><body>"
+                output += "<a href='restaurants/new'>Make a New Restaurant</a><br><br>"
                 for restaurant in restaurants:
                     output += restaurant.name
                     output += "<br><a href='#'>Edit</a>"
