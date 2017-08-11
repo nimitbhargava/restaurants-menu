@@ -48,7 +48,6 @@ class webServerHandler(BaseHTTPRequestHandler):
                     output += "</body></html>"
 
                     self.wfile.write(output)
-
             
             if self.path.endswith("/restaurants"):
                 restaurants = session.query(Restaurant).all()
@@ -72,6 +71,13 @@ class webServerHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         try:
+            if self.path.endswith('/edit'):
+                ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
+                if ctype == 'multipart/form-data':
+                    fields = cgi.parse_multipart(self.rfile, pdict)
+                    messagecontent = fields.get('newRestaurantName')
+                    restaurantIDPath = self.path.split("/")[2]
+                
             if self.path.endswith('/restaurants/new'):
                 ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
                 if ctype == 'multipart/form-data':
