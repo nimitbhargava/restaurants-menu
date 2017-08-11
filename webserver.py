@@ -27,6 +27,8 @@ class webServerHandler(BaseHTTPRequestHandler):
                     output += "</br></br></br>"
 
                 output += "</body></html>"
+                self.wfile.write(output)
+                return
         except IOError:
             self.send_error(404, 'File Not Found: %s' % self.path)
 
