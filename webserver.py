@@ -16,6 +16,8 @@ class webServerHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         try:
+            if self.path.endswith("/delete"):
+            
             if self.path.endswith("/restaurants/new"):
                 self.send_response(200)
                 self.send_header('Content-type', 'text/html')
