@@ -15,9 +15,10 @@ class webServerHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         try:
-            if self.path.endswith("/restaunts"):
-
+            if self.path.endswith("/restaurants"):
+                restaurants = session.query(Restaurant).all()
         except IOError:
+            self.send_error(404, 'File Not Found: %s' % self.path)
 
 
 def main():
