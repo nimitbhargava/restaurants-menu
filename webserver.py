@@ -49,6 +49,13 @@ class webServerHandler(BaseHTTPRequestHandler):
         except IOError:
             self.send_error(404, 'File Not Found: %s' % self.path)
 
+    def do_POST(self):
+        try:
+            if self.path.endswith('/restaurants/new'):
+                
+        except expression as identifier:
+            pass
+
 
 def main():
     try:
