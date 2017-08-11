@@ -1,4 +1,5 @@
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+import cgi
 
 # import classes for CRUD Operations
 from database_setup import Base, Restaurant, MenuItem
@@ -52,8 +53,12 @@ class webServerHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         try:
             if self.path.endswith('/restaurants/new'):
+                ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
+                if ctype == 'multipart/form-data':
+                    fields = cgi.parse_multipart(self.rfile, pdict)
+                    messagecontent = fields.get('newRestaurantName')
                 
-        except expression as identifier:
+        except:
             pass
 
 
